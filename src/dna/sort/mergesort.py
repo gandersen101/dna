@@ -1,12 +1,12 @@
 import collections.abc
 
-from ..protocols import CompareableP
+from ..types import CompareableT
 
 
 def _merge(
-    s1: collections.abc.Sequence[CompareableP],
-    s2: collections.abc.Sequence[CompareableP],
-) -> list[CompareableP]:
+    s1: collections.abc.Sequence[CompareableT],
+    s2: collections.abc.Sequence[CompareableT],
+) -> list[CompareableT]:
     len_s1 = len(s1)
     len_s2 = len(s2)
 
@@ -33,7 +33,7 @@ def _merge(
     return result
 
 
-def mergesort(s: collections.abc.Sequence[CompareableP]) -> list[CompareableP]:
+def mergesort(s: collections.abc.Sequence[CompareableT]) -> list[CompareableT]:
     len_s = len(s)
 
     if len_s <= 1:  # base case

@@ -2,7 +2,6 @@ import collections.abc
 
 import pytest
 
-from dna.protocols import CompareableP
 from dna.select import rselect
 
 from .loaders import (
@@ -24,7 +23,5 @@ from .loaders import (
         pytest.param(load_100k_unique_ints(), 87_941, id="100k unique ints"),
     ],
 )
-def test_mergesort(
-    s: collections.abc.Sequence[CompareableP], order_statistic: int
-) -> None:
+def test_mergesort(s: collections.abc.Sequence[int], order_statistic: int) -> None:
     assert rselect(s, order_statistic) == sorted(s)[order_statistic - 1]

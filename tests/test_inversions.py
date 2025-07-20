@@ -3,7 +3,7 @@ import collections.abc
 import pytest
 
 from dna.inversions import count_inversions
-from dna.protocols import CompareableP
+from dna.types import CompareableT
 
 from .loaders import load_10_unique_ints1, load_100k_unique_ints
 
@@ -17,6 +17,6 @@ from .loaders import load_10_unique_ints1, load_100k_unique_ints
     ],
 )
 def test_count_inversions(
-    s: collections.abc.Sequence[CompareableP], inversions: int
+    s: collections.abc.Sequence[CompareableT], inversions: int
 ) -> None:
     assert count_inversions(s) == inversions

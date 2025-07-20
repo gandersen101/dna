@@ -2,19 +2,19 @@ import collections.abc
 import typing as ty
 from random import randint
 
-from .protocols import CompareableP
+from .types import CompareableT
 
-Choose = ty.Callable[[collections.abc.Sequence[CompareableP], int, int], int]
+Choose = ty.Callable[[collections.abc.Sequence[CompareableT], int, int], int]
 
 
 def random(
-    _s: collections.abc.Sequence[CompareableP], start_idx: int, end_idx: int
+    _s: collections.abc.Sequence[CompareableT], start_idx: int, end_idx: int
 ) -> int:
     return randint(start_idx, end_idx)
 
 
 def median_of_3(
-    s: collections.abc.Sequence[CompareableP], start_idx: int, end_idx: int
+    s: collections.abc.Sequence[CompareableT], start_idx: int, end_idx: int
 ) -> int:
     mid = (start_idx + end_idx) // 2
 

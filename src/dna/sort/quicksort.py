@@ -2,20 +2,20 @@ import collections.abc
 
 from .. import pivot
 from ..partition import partition
-from ..protocols import CompareableP
+from ..types import CompareableT
 
 
 def quicksort(
-    s: collections.abc.MutableSequence[CompareableP],
+    s: collections.abc.MutableSequence[CompareableT],
     *,
     choose_pivot: pivot.Choose = pivot.median_of_3,
-) -> collections.abc.MutableSequence[CompareableP]:
+) -> collections.abc.MutableSequence[CompareableT]:
     start_idx = 0
     end_idx = len(s) - 1
 
     def _quicksort(
-        s: collections.abc.MutableSequence[CompareableP], start_idx: int, end_idx: int
-    ) -> tuple[collections.abc.MutableSequence[CompareableP], int]:
+        s: collections.abc.MutableSequence[CompareableT], start_idx: int, end_idx: int
+    ) -> tuple[collections.abc.MutableSequence[CompareableT], int]:
         if start_idx >= end_idx:  # base case
             return s, 0
 

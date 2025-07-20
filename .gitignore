@@ -12,7 +12,6 @@ wheels/
 # Python version
 .python-version
 
-
 # Pytest
 .pytest_cache
 

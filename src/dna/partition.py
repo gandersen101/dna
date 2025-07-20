@@ -1,10 +1,10 @@
 import collections.abc
 
-from .protocols import CompareableP
+from .types import CompareableT
 
 
 def partition(
-    s: collections.abc.MutableSequence[CompareableP], start_idx: int, end_idx: int
+    s: collections.abc.MutableSequence[CompareableT], start_idx: int, end_idx: int
 ) -> int:
     pivot_value = s[start_idx]
     pivot_boundary = start_idx + 1

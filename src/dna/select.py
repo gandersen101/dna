@@ -2,15 +2,15 @@ import collections.abc
 
 from . import pivot
 from .partition import partition
-from .protocols import CompareableP
+from .types import CompareableT
 
 
 def rselect(
-    s: collections.abc.Sequence[CompareableP],
+    s: collections.abc.Sequence[CompareableT],
     order_statistic: int,
     *,
     choose_pivot: pivot.Choose = pivot.median_of_3,
-) -> CompareableP:
+) -> CompareableT:
     if order_statistic <= 0:
         raise ValueError(
             f"Cannot have an order statistic less than 1. Got {order_statistic}."
@@ -23,8 +23,8 @@ def rselect(
     order_statistic -= 1
 
     def _rselect(
-        s: collections.abc.MutableSequence[CompareableP], order_statistic: int
-    ) -> CompareableP:
+        s: collections.abc.MutableSequence[CompareableT], order_statistic: int
+    ) -> CompareableT:
         n = len(s)
         start_idx = 0
         end_idx = n - 1

@@ -3,7 +3,6 @@ import collections.abc
 import pytest
 
 from dna import pivot
-from dna.protocols import CompareableP
 from dna.sort import quicksort
 
 from ..loaders import load_10_unique_ints2, load_10k_unique_ints, load_100_unique_ints
@@ -11,12 +10,10 @@ from .params import PARAMS
 
 
 @pytest.mark.parametrize(*PARAMS)
-def test_quicksort(s: collections.abc.MutableSequence[CompareableP]) -> None:
-    s_list = list(s)
+def test_quicksort(s: collections.abc.Sequence[int]) -> None:
     expected = sorted(s)
 
-    assert quicksort(s_list) == expected
-    assert s_list == expected  # quicksort sorts in-place
+    assert quicksort(list(s)) == expected
 
 
 @pytest.mark.parametrize(
@@ -78,8 +75,8 @@ def test_quicksort(s: collections.abc.MutableSequence[CompareableP]) -> None:
         ),
     ],
 )
-def test_quicksort_comparison_counts(
-    s: collections.abc.MutableSequence[CompareableP],
+def test_quicksort_w_ints_comparison_counts(
+    s: collections.abc.Sequence[int],
     choose_pivot: pivot.Choose,
     n_comparisons: int,
 ) -> None:

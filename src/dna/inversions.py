@@ -1,12 +1,12 @@
 import collections.abc
 
-from .protocols import CompareableP
+from .types import CompareableT
 
 
 def _merge_and_count_split_inversions(
-    s1: collections.abc.Sequence[CompareableP],
-    s2: collections.abc.Sequence[CompareableP],
-) -> tuple[list[CompareableP], int]:
+    s1: collections.abc.Sequence[CompareableT],
+    s2: collections.abc.Sequence[CompareableT],
+) -> tuple[list[CompareableT], int]:
     len_s1 = len(s1)
     len_s2 = len(s2)
 
@@ -35,8 +35,8 @@ def _merge_and_count_split_inversions(
 
 
 def _mergesort_and_count_inversions(
-    s: collections.abc.Sequence[CompareableP],
-) -> tuple[list[CompareableP], int]:
+    s: collections.abc.Sequence[CompareableT],
+) -> tuple[list[CompareableT], int]:
     len_s = len(s)
 
     if len_s <= 1:  # base case
@@ -53,5 +53,5 @@ def _mergesort_and_count_inversions(
     return sorted_lst, left_invs + right_invs + split_invs
 
 
-def count_inversions(s: collections.abc.Sequence[CompareableP]) -> int:
+def count_inversions(s: collections.abc.Sequence[CompareableT]) -> int:
     return _mergesort_and_count_inversions(s)[1]
