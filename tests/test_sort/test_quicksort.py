@@ -1,17 +1,17 @@
-import typing as ty
+import collections.abc
 
 import pytest
 
+from dna import pivot
+from dna.protocols import CompareableP
 from dna.sort import quicksort
-from dna.sort.quicksort import ChoosePivot, _median_of_3
-from dna.types import CompareableT
 
 from ..loaders import load_10_unique_ints2, load_10k_unique_ints, load_100_unique_ints
 from .params import PARAMS
 
 
 @pytest.mark.parametrize(*PARAMS)
-def test_quicksort(s: ty.MutableSequence[CompareableT]) -> None:
+def test_quicksort(s: collections.abc.MutableSequence[CompareableP]) -> None:
     s_list = list(s)
     expected = sorted(s)
 
@@ -36,7 +36,7 @@ def test_quicksort(s: ty.MutableSequence[CompareableT]) -> None:
         ),
         pytest.param(
             load_10_unique_ints2(),
-            _median_of_3,
+            pivot.median_of_3,
             21,
             id="choose median pivot - 10 unique ints",
         ),
@@ -54,7 +54,7 @@ def test_quicksort(s: ty.MutableSequence[CompareableT]) -> None:
         ),
         pytest.param(
             load_100_unique_ints(),
-            _median_of_3,
+            pivot.median_of_3,
             502,
             id="choose median pivot - 100 unique ints",
         ),
@@ -72,15 +72,15 @@ def test_quicksort(s: ty.MutableSequence[CompareableT]) -> None:
         ),
         pytest.param(
             load_10k_unique_ints(),
-            _median_of_3,
+            pivot.median_of_3,
             138_382,
             id="choose median pivot - 10k unique ints",
         ),
     ],
 )
 def test_quicksort_comparison_counts(
-    s: ty.MutableSequence[CompareableT],
-    choose_pivot: ChoosePivot,
+    s: collections.abc.MutableSequence[CompareableP],
+    choose_pivot: pivot.Choose,
     n_comparisons: int,
 ) -> None:
     quicksort(list(s), choose_pivot=choose_pivot)

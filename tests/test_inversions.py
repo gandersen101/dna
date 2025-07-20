@@ -1,9 +1,9 @@
-import typing as ty
+import collections.abc
 
 import pytest
 
 from dna.inversions import count_inversions
-from dna.types import CompareableT
+from dna.protocols import CompareableP
 
 from .loaders import load_10_unique_ints1, load_100k_unique_ints
 
@@ -16,5 +16,7 @@ from .loaders import load_10_unique_ints1, load_100k_unique_ints
         pytest.param(["a", "b", "c", "d"], 0, id="string array with no inversions"),
     ],
 )
-def test_count_inversions(s: ty.Sequence[CompareableT], inversions: int) -> None:
+def test_count_inversions(
+    s: collections.abc.Sequence[CompareableP], inversions: int
+) -> None:
     assert count_inversions(s) == inversions

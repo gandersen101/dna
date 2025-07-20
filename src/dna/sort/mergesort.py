@@ -1,11 +1,12 @@
-import typing as ty
+import collections.abc
 
-from ..types import CompareableT
+from ..protocols import CompareableP
 
 
 def _merge(
-    s1: ty.Sequence[CompareableT], s2: ty.Sequence[CompareableT]
-) -> list[CompareableT]:
+    s1: collections.abc.Sequence[CompareableP],
+    s2: collections.abc.Sequence[CompareableP],
+) -> list[CompareableP]:
     len_s1 = len(s1)
     len_s2 = len(s2)
 
@@ -32,7 +33,7 @@ def _merge(
     return result
 
 
-def mergesort(s: ty.Sequence[CompareableT]) -> list[CompareableT]:
+def mergesort(s: collections.abc.Sequence[CompareableP]) -> list[CompareableP]:
     len_s = len(s)
 
     if len_s <= 1:  # base case
