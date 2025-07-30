@@ -14,6 +14,10 @@ def karger_min(
     if iterations <= 0:
         iterations = int(n**2 * log(n))
 
+    iterations *= 10
+    # constant factor that gets supressed from asymptotic runtime,
+    # but increases the probability of success
+
     def _karger_min(malm: dict[N, list[N]]) -> int:
         while len(malm) > 2:
             # Pick a random edge (v, w)
